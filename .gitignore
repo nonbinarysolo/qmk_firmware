@@ -53,7 +53,7 @@ quantum/version.h
 build/
 cmake-build-debug
 CMakeLists.txt
-*.pdf
+#*.pdf
 
 # Let these ones be user specific, since we have so many different configurations
 *.code-workspace
@@ -76,7 +76,7 @@ tags
 *.png
 *.apng
 *.mng
-*.svg
+#*.svg
 *.webp
 *.webm
 *.avi
