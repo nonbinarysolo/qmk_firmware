@@ -40,7 +40,7 @@ enum tap_dance_codes {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [0] = LAYOUT_ergodox_ez(
+  [0] = LAYOUT_ergodox_pretty(
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      KC_H,       KC_P,       KC_O,       KC_I,       KC_U,       KC_Y,       KC_BSPC,
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      TT(2),      KC_T,       KC_R,       KC_E,       KC_W,       KC_Q,       KC_TAB,
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                              KC_G,       KC_F,       KC_D,       KC_S,       KC_A,       KC_LSFT,
@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                                         KC_NO,          KC_LALT,
                                                                             KC_NO,          KC_NO,      KC_NO,          TD(LANG_SWAP),    KC_ENTER,   KC_SPACE
   ),
-  [1] = LAYOUT_ergodox_ez(
+  [1] = LAYOUT_ergodox_pretty(
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      KC_DELETE,      KC_5,           KC_4,           KC_3,           KC_2,           KC_1,           KC_TRANSPARENT,
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      TT(2),          KC_0,           KC_9,           KC_8,           KC_7,           KC_6,           KC_TRANSPARENT,
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                  KC_RPRN,        KC_LPRN,        KC_SLASH,       KC_QUOTE,       KC_SCLN,      KC_TRANSPARENT,
@@ -60,11 +60,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                                                         KC_LALT,        KC_LALT,
                                                                             KC_NO,      KC_NO,      KC_NO,              KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
-  [2] = LAYOUT_ergodox_ez(
+  [2] = LAYOUT_ergodox_pretty(
     LGUI(KC_L),     KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_ESCAPE,                                      KC_ESCAPE,      KC_F5,          KC_F4,          KC_F3,          KC_F2,          KC_F1,          LGUI(KC_L),
     KC_MAIL,        KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_F10,         KC_F9,          KC_F8,          KC_F7,          KC_F6,          KC_MAIL,
     KC_LSFT,      TO(3),          ST_MACRO_0,     LGUI(LSFT(KC_S)),KC_UP,          KC_AUDIO_MUTE,                                                                  KC_AUDIO_MUTE,  KC_UP,          LGUI(LSFT(KC_S)),ST_MACRO_2,     KC_NO,          KC_CALCULATOR,
-    KC_CALCULATOR,  RESET,    ST_MACRO_1,     KC_LEFT,        KC_DOWN,        KC_RIGHT,       TO(1),                                          TO(1),          KC_RIGHT,       KC_DOWN,        KC_LEFT,        ST_MACRO_3,           QK_BOOT,        ST_MACRO_4,
+    KC_CALCULATOR,  QK_BOOT,    ST_MACRO_1,     KC_LEFT,        KC_DOWN,        KC_RIGHT,       TO(1),                                          TO(1),          KC_RIGHT,       KC_DOWN,        KC_LEFT,        ST_MACRO_3,           QK_BOOT,        ST_MACRO_4,
     KC_F11,         KC_F12,         KC_F13,         KC_F14,         KC_F15,                                                                                                         KC_F15,         KC_F14,         KC_F13,         KC_F12,         KC_F11,
                                                                                                     KC_MEDIA_PREV_TRACK,KC_MEDIA_NEXT_TRACK,KC_MEDIA_NEXT_TRACK,KC_MEDIA_PREV_TRACK,
                                                                                                                     KC_MEDIA_PLAY_PAUSE,KC_MEDIA_PLAY_PAUSE,
@@ -103,7 +103,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	
     case ST_MACRO_4:
     if (record->event.pressed) {
-      SEND_STRING(SS_RGUI(SS_RCTRL()));
+      SEND_STRING(SS_RALT(SS_RGUI(SS_TAP(X_R)))); // Should be Ctrl+GUI for window changing
 
     }
     break;
@@ -130,7 +130,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
-uint32_t layer_state_set_user(uint32_t state) {
+//uint32_t layer_state_set_user(uint32_t state) {
+layer_state_t layer_state_set_user(layer_state_t state) {
   uint8_t layer = biton32(state);
   ergodox_board_led_off();
   ergodox_right_led_1_off();
@@ -239,7 +240,7 @@ void dance_1_reset(qk_tap_dance_state_t *state, void *user_data) {
 }
 */
 
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
         [LANG_SWAP] = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, LGUI(KC_SPACE)) //ACTION_TAP_DANCE_FN_ADVANCED(on_dance_1, dance_1_finished, dance_1_reset),
 };
 
