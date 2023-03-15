@@ -25,26 +25,24 @@
 
 enum custom_keycodes {
   RGB_SLD = EZ_SAFE_RANGE,
-  ST_MACRO_0,
-  ST_MACRO_1,
-  ST_MACRO_2,
-  ST_MACRO_3,
-  ST_MACRO_4,
-  ST_MACRO_5,
-  ST_MACRO_6,
-  ST_MACRO_7,
+  GCAP,
+  GREC,
+  SSHOT
 };
 
 enum tap_dance_codes {
-  LANG_SWAP,            // WIN when tapped, WIN+SPACE when double-tapped
-  LDESK,        // Go to left desktop
-  RDESK         // Go to right desktop
+  LANG_SWAP,      // WIN when tapped, WIN+SPACE when double-tapped
+  LDESK,          // Go to left desktop
+  RDESK,          // Go to right desktop
+  CAPSW           // Double-tap Caps Lock to do Caps Word
 };
 
 tap_dance_action_t tap_dance_actions[] = {
         [LANG_SWAP] = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, LGUI(KC_SPACE)), //ACTION_TAP_DANCE_FN_ADVANCED(on_dance_1, dance_1_finished, dance_1_reset),
         [LDESK] = ACTION_TAP_DANCE_DOUBLE(KC_LEFT, LCTL(LGUI(KC_LEFT))),
-        [RDESK] = ACTION_TAP_DANCE_DOUBLE(KC_RIGHT, LCTL(LGUI(KC_RIGHT)))
+        [RDESK] = ACTION_TAP_DANCE_DOUBLE(KC_RIGHT, LCTL(LGUI(KC_RIGHT))),
+        //[CAPSW] = ACTION_TAP_DANCE_DOUBLE(KC_CAPS, QK_CAPS_WORD_TOGGLE)
+        [CAPSW] = ACTION_TAP_DANCE_DOUBLE(CW_TOGG, KC_CAPS)
 };
 
 
@@ -58,27 +56,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                                          KC_M,       KC_N,       KC_L,       KC_K,       KC_J,
                                                                                             KC_NO,      KC_NO,          KC_END,         KC_HOME,
                                                                                                         KC_NO,          KC_LALT,
-                                                                            KC_NO,          KC_NO,      KC_NO,          TD(LANG_SWAP),    KC_ENTER,   KC_SPACE
+                                                                            KC_NO,          KC_NO,      KC_NO,          TD(LANG_SWAP),  KC_ENT,     KC_SPC
   ),
   [1] = LAYOUT_ergodox_pretty(
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      KC_DELETE,      KC_5,           KC_4,           KC_3,           KC_2,           KC_1,           KC_TRANSPARENT,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      TT(2),          KC_0,           KC_9,           KC_8,           KC_7,           KC_6,           KC_TRANSPARENT,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                  KC_RPRN,        KC_LPRN,        KC_SLASH,       KC_QUOTE,       KC_SCLN,      KC_TRANSPARENT,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      KC_TRANSPARENT, KC_RBRC,        KC_LBRC,        KC_BSLS,      KC_DOT,         KC_COMMA,       MOD_LCTL,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                                                        AS_TOGG,        KC_EQUAL,       KC_MINUS,       KC_GRAVE,       KC_CAPS,
-                                                                                        KC_NO,      KC_NO,              KC_PGDN,        KC_PGUP,
-                                                                                                                        KC_LALT,        KC_LALT,
-                                                                            KC_NO,      KC_NO,      KC_NO,              KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      KC_DELETE,      KC_5,           KC_4,           KC_3,           KC_2,           KC_1,           KC_TRNS,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      TT(2),          KC_0,           KC_9,           KC_8,           KC_7,           KC_6,           KC_TRNS,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                  KC_RPRN,        KC_LPRN,        KC_SLASH,       KC_QUOTE,       KC_SCLN,        KC_TRNS,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      KC_TRNS,        KC_RBRC,        KC_LBRC,        KC_BSLS,        KC_DOT,         KC_COMMA,       MOD_LCTL,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                              AS_TOGG,        KC_EQUAL,       KC_MINUS,       KC_GRAVE,       KC_CAPS,
+                                                                                            KC_NO,      KC_NO,          KC_PGDN,        KC_PGUP,
+                                                                                                        KC_NO,          KC_LALT,
+                                                                            KC_NO,          KC_NO,      KC_NO,          KC_TRNS,        KC_TRNS,        KC_TRNS
   ),
   [2] = LAYOUT_ergodox_pretty(
-    LGUI(KC_L),     KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_ESCAPE,                                      KC_ESCAPE,      KC_F5,          KC_F4,          KC_F3,          KC_F2,          KC_F1,          LGUI(KC_L),
-    KC_MAIL,        KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_F10,         KC_F9,          KC_F8,          KC_F7,          KC_F6,          KC_MAIL,
-    KC_LSFT,      TO(3),          ST_MACRO_0,     LGUI(LSFT(KC_S)),KC_UP,          KC_AUDIO_MUTE,                                                                   KC_AUDIO_MUTE,  KC_UP,          LGUI(LSFT(KC_S)),ST_MACRO_2,    KC_NO,          KC_CALCULATOR,
-    KC_CALCULATOR,  QK_BOOT,    ST_MACRO_1,     KC_LEFT,        KC_DOWN,        KC_RIGHT,       TO(1),                                              TO(1),          TD(RDESK),      KC_DOWN,        TD(LDESK),       ST_MACRO_3,    QK_BOOT,        KC_NO,
-    KC_F11,         KC_F12,         KC_F13,         KC_F14,         KC_F15,                                                                                                         KC_F15,         KC_F14,         KC_F13,         KC_F12,         KC_F11,
-                                                                                                    KC_MEDIA_PREV_TRACK,KC_MEDIA_NEXT_TRACK,KC_MEDIA_NEXT_TRACK,KC_MEDIA_PREV_TRACK,
-                                                                                                                    KC_MEDIA_PLAY_PAUSE,KC_MEDIA_PLAY_PAUSE,
-                                                                                    KC_AUDIO_VOL_DOWN,KC_AUDIO_VOL_UP,KC_LGUI,        KC_LGUI,        KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      KC_ESC,         KC_F5,          KC_F4,          KC_F3,          KC_F2,          KC_F1,          LGUI(KC_L),
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      KC_TRNS,        KC_F10,         KC_F9,          KC_F8,          KC_F7,          KC_F6,          KC_MAIL,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                  KC_MUTE,        KC_UP,          SSHOT,          GCAP,           KC_NO,          KC_CALC,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      TO(1),          TD(RDESK),      KC_DOWN,        TD(LDESK),      GREC,           QK_BOOT,        KC_NO,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                                              KC_F15,         KC_F14,         KC_F13,         KC_F12,         KC_F11,
+                                                                                            KC_NO,      KC_NO,          KC_MNXT,        KC_MPRV,
+                                                                                                        KC_NO,          KC_MPLY,
+                                                                            KC_NO,          KC_NO,      KC_NO,          KC_LGUI,        KC_VOLU,        KC_VOLD
   )
 };
 
@@ -86,56 +84,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
 	 
-    case ST_MACRO_0:
+    case GCAP:
     if (record->event.pressed) {
       SEND_STRING(SS_RALT(SS_RGUI(SS_TAP(X_G))));
-
     }
     break;
-    case ST_MACRO_1:
+    case GREC:
     if (record->event.pressed) {
       SEND_STRING(SS_RALT(SS_RGUI(SS_TAP(X_R))));
-
     }
     break;
-    case ST_MACRO_2:
+    case SSHOT:
     if (record->event.pressed) {
-      SEND_STRING(SS_RALT(SS_RGUI(SS_TAP(X_G))));
-
+      SEND_STRING(SS_LGUI(SS_LSFT(SS_TAP(X_S))));
     }
     break;
-    case ST_MACRO_3:
-    if (record->event.pressed) {
-      SEND_STRING(SS_RALT(SS_RGUI(SS_TAP(X_R))));
-
-    }
-    break;
-	
-    case ST_MACRO_4:
-    if (record->event.pressed) {
-      SEND_STRING(SS_RALT(SS_RGUI(SS_TAP(X_R)))); // Should be Ctrl+GUI for window changing
-
-    }
-    break;
-    case ST_MACRO_5:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_5) SS_TAP(X_KP_4) ));
-
-    }
-    break;
-    case ST_MACRO_6:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_2) SS_TAP(X_KP_2) ));
-
-    }
-    break;
-    case ST_MACRO_7:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LALT(SS_TAP(X_KP_0) SS_TAP(X_KP_2) SS_TAP(X_KP_5) SS_TAP(X_KP_4) ));
-
-    }
-    break;
-	
   }
   return true;
 }
@@ -193,3 +156,14 @@ enum {
     DOUBLE_SINGLE_TAP,
     MORE_TAPS
 };
+
+
+void caps_word_set_user(bool active) {
+    if (active) {
+        // Do something when Caps Word activates.
+        ergodox_right_led_3_on();
+    } else {
+        // Do something when Caps Word deactivates.
+        ergodox_right_led_3_off();
+    }
+}
