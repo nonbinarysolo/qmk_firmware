@@ -42,7 +42,7 @@ tap_dance_action_t tap_dance_actions[] = {
         [LDESK] = ACTION_TAP_DANCE_DOUBLE(KC_LEFT, LCTL(LGUI(KC_LEFT))),
         [RDESK] = ACTION_TAP_DANCE_DOUBLE(KC_RIGHT, LCTL(LGUI(KC_RIGHT))),
         //[CAPSW] = ACTION_TAP_DANCE_DOUBLE(KC_CAPS, QK_CAPS_WORD_TOGGLE)
-        [CAPSW] = ACTION_TAP_DANCE_DOUBLE(CW_TOGG, KC_CAPS)
+        //[CAPSW] = ACTION_TAP_DANCE_DOUBLE(CW_TOGG, KC_CAPS)
 };
 
 
@@ -59,20 +59,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                             KC_NO,          KC_NO,      KC_NO,          TD(LANG_SWAP),  KC_ENT,     KC_SPC
   ),
   [1] = LAYOUT_ergodox_pretty(
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      KC_DELETE,      KC_5,           KC_4,           KC_3,           KC_2,           KC_1,           KC_TRNS,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      TT(2),          KC_0,           KC_9,           KC_8,           KC_7,           KC_6,           KC_TRNS,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                  KC_RPRN,        KC_LPRN,        KC_SLASH,       KC_QUOTE,       KC_SCLN,        KC_TRNS,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      KC_TRNS,        KC_RBRC,        KC_LBRC,        KC_BSLS,        KC_DOT,         KC_COMMA,       MOD_LCTL,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                              AS_TOGG,        KC_EQUAL,       KC_MINUS,       KC_GRAVE,       KC_CAPS,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      KC_DELETE,      KC_5,           KC_4,           KC_3,           KC_2,           KC_1,           KC_TRNS,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      TT(2),          KC_0,           KC_9,           KC_8,           KC_7,           KC_6,           KC_TRNS,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                                  KC_RPRN,        KC_LPRN,        KC_SLASH,       KC_QUOTE,       KC_SCLN,        KC_TRNS,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      KC_TRNS,        KC_RBRC,        KC_LBRC,        KC_BSLS,        KC_DOT,         KC_COMMA,       KC_LCTL,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                                              AS_TOGG,        KC_EQUAL,       KC_MINUS,       KC_GRAVE,       KC_CAPS,
                                                                                             KC_NO,      KC_NO,          KC_PGDN,        KC_PGUP,
                                                                                                         KC_NO,          KC_LALT,
                                                                             KC_NO,          KC_NO,      KC_NO,          KC_TRNS,        KC_TRNS,        KC_TRNS
   ),
   [2] = LAYOUT_ergodox_pretty(
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      KC_ESC,         KC_F5,          KC_F4,          KC_F3,          KC_F2,          KC_F1,          LGUI(KC_L),
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      KC_TRNS,        KC_F10,         KC_F9,          KC_F8,          KC_F7,          KC_F6,          KC_MAIL,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                  KC_MUTE,        KC_UP,          SSHOT,          GCAP,           KC_NO,          KC_CALC,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                      TO(1),          TD(RDESK),      KC_DOWN,        TD(LDESK),      GREC,           QK_BOOT,        KC_NO,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      KC_ESC,         KC_F5,          KC_F4,          KC_F3,          KC_F2,          KC_F1,          LGUI(KC_L),
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      KC_TRNS,        KC_F10,         KC_F9,          KC_F8,          KC_F7,          KC_F6,          KC_MAIL,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                                  KC_MUTE,        KC_UP,          SSHOT,          GCAP,           KC_NO,          KC_CALC,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      TO(1),          TD(RDESK),      KC_DOWN,        TD(LDESK),      GREC,           QK_BOOT,        KC_LCTL,
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                                              KC_F15,         KC_F14,         KC_F13,         KC_F12,         KC_F11,
                                                                                             KC_NO,      KC_NO,          KC_MNXT,        KC_MPRV,
                                                                                                         KC_NO,          KC_MPLY,
