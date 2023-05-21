@@ -34,13 +34,17 @@ enum tap_dance_codes {
   LANG_SWAP,      // WIN when tapped, WIN+SPACE when double-tapped
   LDESK,          // Go to left desktop
   RDESK,          // Go to right desktop
-  CAPSW           // Double-tap Caps Lock to do Caps Word
-};
+  CAPSW,           // Double-tap Caps Lock to do Caps Word
+  BUILD,           // Double tap F5 to compile
+  AHK             // Momentarilty change to AHK layer
+  };
 
 tap_dance_action_t tap_dance_actions[] = {
         [LANG_SWAP] = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, LGUI(KC_SPACE)), //ACTION_TAP_DANCE_FN_ADVANCED(on_dance_1, dance_1_finished, dance_1_reset),
         [LDESK] = ACTION_TAP_DANCE_DOUBLE(KC_LEFT, LCTL(LGUI(KC_LEFT))),
         [RDESK] = ACTION_TAP_DANCE_DOUBLE(KC_RIGHT, LCTL(LGUI(KC_RIGHT))),
+        [BUILD] = ACTION_TAP_DANCE_DOUBLE(KC_F5, LCTL(LCTL(KC_F5))),
+        [AHK] = ACTION_TAP_DANCE_LAYER_MOVE(KC_LALT, 3),
         //[CAPSW] = ACTION_TAP_DANCE_DOUBLE(KC_CAPS, QK_CAPS_WORD_TOGGLE)
         //[CAPSW] = ACTION_TAP_DANCE_DOUBLE(CW_TOGG, KC_CAPS)
 };
@@ -55,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      TT(1),      KC_B,       KC_V,       KC_C,       KC_X,       KC_Z,       KC_LCTL,
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                                          KC_M,       KC_N,       KC_L,       KC_K,       KC_J,
                                                                                             KC_NO,      KC_NO,          KC_END,         KC_HOME,
-                                                                                                        KC_NO,          KC_LALT,
+                                                                                                        KC_NO,          LT(3, KC_LALT),
                                                                             KC_NO,          KC_NO,      KC_NO,          TD(LANG_SWAP),  KC_ENT,     KC_SPC
   ),
   [1] = LAYOUT_ergodox_pretty(
@@ -69,14 +73,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                             KC_NO,          KC_NO,      KC_NO,          KC_TRNS,        KC_TRNS,        KC_TRNS
   ),
   [2] = LAYOUT_ergodox_pretty(
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      KC_ESC,         KC_F5,          KC_F4,          KC_F3,          KC_F2,          KC_F1,          LGUI(KC_L),
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      KC_ESC,         TD(BUILD),      KC_F4,          KC_F3,          KC_F2,          KC_F1,          LGUI(KC_L),
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      KC_TRNS,        KC_F10,         KC_F9,          KC_F8,          KC_F7,          KC_F6,          KC_MAIL,
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                                  KC_MUTE,        KC_UP,          SSHOT,          GCAP,           LCTL(KC_G),     KC_CALC,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      TO(1),          KC_RIGHT,       KC_DOWN,         KC_LEFT,      GREC,           QK_BOOT,        KC_LCTL,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      TO(1),          KC_RIGHT,       KC_DOWN,        KC_LEFT,        GREC,           QK_BOOT,        KC_LCTL,
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                                              KC_F15,         KC_F14,         KC_F13,         KC_F12,         KC_F11,
                                                                                             KC_NO,      KC_NO,          KC_MNXT,        KC_MPRV,
                                                                                                         KC_NO,          KC_MPLY,
                                                                             KC_NO,          KC_NO,      KC_NO,          KC_LGUI,        KC_VOLU,        KC_VOLD
+  ),
+  [3] = LAYOUT_ergodox_pretty(
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      TO(0),          LCTL(LGUI(LALT(KC_KP_8))),      LGUI(LALT(KC_UP)),              LGUI(KC_KP_9),          LGUI(KC_KP_8),          LGUI(KC_KP_7),      TO(0),
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      KC_NO,          LCTL(LGUI(LALT(KC_KP_5))),      LGUI(LALT(KC_DOWN)),            LGUI(KC_KP_6),          LGUI(KC_KP_5),          LGUI(KC_KP_4),      KC_NO,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                                  LCTL(LGUI(LALT(KC_KP_2))),      KC_NO,                          LGUI(KC_KP_3),          LGUI(KC_KP_2),          LGUI(KC_KP_1),      KC_NO,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      KC_NO,          KC_NO,          KC_NO,          KC_NO,                          KC_NO,                  KC_NO,                  KC_NO,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                                              KC_NO,          KC_NO,          KC_NO,                          KC_NO,                  KC_NO,
+                                                                                            KC_NO,      KC_NO,          KC_NO,          KC_NO,
+                                                                                                        KC_NO,          TO(0),
+                                                                            KC_NO,          KC_NO,      KC_NO,          KC_NO,          KC_NO,          KC_NO
   )
 };
 
