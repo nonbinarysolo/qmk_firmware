@@ -54,12 +54,12 @@ tap_dance_action_t tap_dance_actions[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_ergodox_pretty(
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      KC_H,       KC_P,       KC_O,       KC_I,       KC_U,       KC_Y,       KC_BSPC,
-    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      TT(2),      KC_T,       KC_R,       KC_E,       KC_W,       KC_Q,       KC_TAB,
+    KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      TT(2),      KC_T,       KC_R,       KC_E,       KC_W,       KC_Q,       LT(3, KC_TAB),
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                              KC_G,       KC_F,       KC_D,       KC_S,       KC_A,       KC_LSFT,
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                      TT(1),      KC_B,       KC_V,       KC_C,       KC_X,       KC_Z,       KC_LCTL,
     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,                                                                                          KC_M,       KC_N,       KC_L,       KC_K,       KC_J,
                                                                                             KC_NO,      KC_NO,          KC_END,         KC_HOME,
-                                                                                                        KC_NO,          LT(3, KC_LALT),
+                                                                                                        KC_NO,          KC_LALT,
                                                                             KC_NO,          KC_NO,      KC_NO,          TD(LANG_SWAP),  KC_ENT,     KC_SPC
   ),
   [1] = LAYOUT_ergodox_pretty(
